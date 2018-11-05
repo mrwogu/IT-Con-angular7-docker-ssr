@@ -14,6 +14,7 @@ enableProdMode();
 
 // Express server
 const app = express();
+const morgan = require('morgan');
 
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist');
@@ -25,6 +26,8 @@ const template = readFileSync(join(DIST_FOLDER, 'browser', 'index.html')).toStri
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main');
 
 const { provideModuleMap } = require('@nguniversal/module-map-ngfactory-loader');
+
+app.use(morgan('combined'));
 
 app.engine('html', (_, options, callback) => {
   renderModuleFactory(AppServerModuleNgFactory, {
@@ -53,5 +56,6 @@ app.get('*', (req, res) => {
 
 // Start up the Node server
 app.listen(PORT, () => {
-  console.log(`Node server listening on http://localhost:${PORT}`);
+  // tslint:disable-next-line
+  console.info(`${new Date()} Node server listening on http://localhost:${PORT}`);
 });
