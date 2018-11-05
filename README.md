@@ -12,3 +12,11 @@
 
     npm run build:ssr && npm run serve:ssr
 
+## How to build Docker image?
+
+    docker build -t angular7:latest .
+    
+## How to run Docker container from built image?
+
+    docker run -it -p 4000:4000 --name angular-ssr angular7:latest
+    
