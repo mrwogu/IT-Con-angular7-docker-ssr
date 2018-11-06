@@ -14,6 +14,7 @@ const routes: Routes = [
         path: 'transfer-example',
         loadChildren: './main/transfer-example/transfer-example.module#TransferExampleModule',
       },
+      { path: '**', redirectTo: 'index', pathMatch: 'full' },
     ],
   },
 ];
