@@ -35,6 +35,8 @@ export class TransferExampleComponent implements OnInit, OnDestroy {
     this.subscription = this.http.get<Post[]>('https://jsonplaceholder.typicode.com/posts').subscribe((posts) => {
       this.posts = posts;
     });
+
+    window.console.log(window.location.href);
   }
 
   ngOnDestroy(): void {
